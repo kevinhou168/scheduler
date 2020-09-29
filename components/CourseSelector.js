@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { getCourseNumber, getCourseTerm, hasConflict, terms } from '../utils/course.js';
 import Course from './Course';
 
-const CourseSelector = ({ courses }) => {
+const CourseSelector = ({ courses, view }) => {
     const [selected, setSelected] = useState([]);
 
     const toggle = course => setSelected(selected => (
@@ -16,6 +16,7 @@ const CourseSelector = ({ courses }) => {
                 isDisabled={hasConflict(course, selected)}
                 select={toggle}
                 isSelected={selected.includes(course)}
+                view={view}
             />
         ))
     );

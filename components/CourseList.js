@@ -4,14 +4,14 @@ import TermSelector from './TermSelector';
 import CourseSelector from './CourseSelector';
 import { getCourseTerm } from '../utils/course.js';
 
-const CourseList = ({ courses }) => {
+const CourseList = ({ courses, view }) => {
     const [selectedTerm, setSelectedTerm] = useState('Fall');
     const termCourses = courses.filter(course => selectedTerm === getCourseTerm(course));
 
     return (
         <ScrollView>
             <TermSelector selectedTerm={selectedTerm} setSelectedTerm={setSelectedTerm} />
-            <CourseSelector courses={termCourses} />
+            <CourseSelector courses={termCourses} view={view}/>
         </ScrollView>
     );
 };
