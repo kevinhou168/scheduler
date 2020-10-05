@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import TermSelector from './TermSelector';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import CourseSelector from './CourseSelector';
+import TermSelector from './TermSelector';
 import { getCourseTerm } from '../utils/course.js';
 
 const CourseList = ({ courses, view }) => {
-    const [selectedTerm, setSelectedTerm] = useState('Fall');
+    const [selectedTerm, setSelectedTerm] = useState('Winter');
     const termCourses = courses.filter(course => selectedTerm === getCourseTerm(course));
 
     return (
-        <ScrollView>
+        <React.Fragment>
             <TermSelector selectedTerm={selectedTerm} setSelectedTerm={setSelectedTerm} />
-            <CourseSelector courses={termCourses} view={view}/>
-        </ScrollView>
+            <ScrollView>
+                <View style={styles.courseList}>
+                    <CourseSelector courses={termCourses} view={view} />
+                </View>
+            </ScrollView>
+        </React.Fragment >
     );
-};
+}
 
 const styles = StyleSheet.create({
     courseList: {
@@ -23,7 +27,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'space-between',
-    },
+    }
 });
 
 export default CourseList;
